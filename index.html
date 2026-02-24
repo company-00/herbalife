@@ -1,71 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    <!-- Configuración básica -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promociones Especiales</title>
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-    <h1>🌿 PROMOCIONES ESPECIALES 🌿</h1>
-    <p>Transforma tu salud hoy</p>
-</header>
-<div class="countdown" id="countdown">
-🔥 Promoción termina en: <span id="timer"></span>
-</div>
+    <!-- HEADER -->
+    <header>
+        <h1>🌿 PROMOCIONES ESPECIALES 🌿</h1>
+        <p>Transforma tu salud hoy</p>
+    </header>
 
-<section class="promo-container">
-
-    <div class="promo">
-    <img src="https://via.placeholder.com/600x400" alt="Promo 1">
-    <h2>Promo Energía Total</h2>
-    <button class="promo-btn" onclick="openModal('modal1')">
-        Ver Oferta
-    </button>
-</div>
-
-<div class="promo">
-    <img src="https://via.placeholder.com/600x400" alt="Promo 2">
-    <h2>Promo Control de Peso</h2>
-    <button class="promo-btn" onclick="openModal('modal2')">
-        Ver Oferta
-    </button>
-</div>
-
-</section>
-
-<!-- Modal 1 -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <h2>🔥 Promo Energía Total 🔥</h2>
-        <ul>
-            <li>✔ Batido Nutricional</li>
-            <li>✔ Té Concentrado</li>
-            <li>✔ Aloe Herbal</li>
-        </ul>
-        <p class="price">$999 MXN</p>
-        <a href="#" class="whatsapp-btn">Pedir por WhatsApp</a>
+    <!-- CONTADOR -->
+    <div class="countdown">
+        🔥 Promoción termina en: <span id="timer"></span>
     </div>
-</div>
 
-<!-- Modal 2 -->
-<div id="modal2" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('modal2')">&times;</span>
-        <h2>🔥 Promo Control de Peso 🔥</h2>
-        <ul>
-            <li>✔ Fórmula 1</li>
-            <li>✔ Proteína</li>
-            <li>✔ Plan personalizado</li>
-        </ul>
-        <p class="price">$1,299 MXN</p>
-        <a href="#" class="whatsapp-btn">Pedir por WhatsApp</a>
+    <!-- PROMOCIONES -->
+    <section class="promo-container">
+
+        <!-- Promo 1 -->
+        <div class="promo">
+            <img src="https://via.placeholder.com/600x400" alt="Promo Energía Total">
+            <h2>Promo Energía Total</h2>
+            <button class="promo-btn" onclick="openModal('modal1')">
+                Ver Oferta
+            </button>
+        </div>
+
+        <!-- Promo 2 -->
+        <div class="promo">
+            <img src="https://via.placeholder.com/600x400" alt="Promo Control de Peso">
+            <h2>Promo Control de Peso</h2>
+            <button class="promo-btn" onclick="openModal('modal2')">
+                Ver Oferta
+            </button>
+        </div>
+
+    </section>
+
+    <!-- ===================== -->
+    <!-- MODALES -->
+    <!-- ===================== -->
+
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>🔥 Promo Energía Total 🔥</h2>
+
+            <ul>
+                <li>✔ Batido Nutricional</li>
+                <li>✔ Té Concentrado</li>
+                <li>✔ Aloe Herbal</li>
+            </ul>
+
+            <p class="price">$999 MXN</p>
+
+            <a class="whatsapp-link" target="_blank">
+                <button class="promo-btn">Pedir por WhatsApp</button>
+            </a>
+        </div>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>🔥 Promo Control de Peso 🔥</h2>
+
+            <ul>
+                <li>✔ Fórmula 1</li>
+                <li>✔ Proteína</li>
+                <li>✔ Plan personalizado</li>
+            </ul>
+
+            <p class="price">$1,299 MXN</p>
+
+            <a class="whatsapp-link" target="_blank">
+                <button class="promo-btn">Pedir por WhatsApp</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+
 </body>
 </html>

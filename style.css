@@ -1,8 +1,12 @@
+/* ================= RESET ================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+/* ================= BODY ================= */
 
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -41,15 +45,14 @@ header p {
     background: white;
     color: #0f9d58;
     margin: 20px auto;
-    padding: 15px;
+    padding: 15px 25px;
     width: fit-content;
     border-radius: 30px;
     font-weight: bold;
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    animation: pulseSoft 2s infinite;
 }
 
-/* ================= PROMOS ================= */
+/* ================= PROMOCIONES ================= */
 
 .promo-container {
     display: grid;
@@ -73,14 +76,6 @@ header p {
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     text-align: center;
     padding-bottom: 25px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-}
-
-.promo.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .promo img {
@@ -93,19 +88,7 @@ header p {
     font-size: clamp(18px, 4vw, 24px);
 }
 
-.icon {
-    font-size: 40px;
-    margin-top: 15px;
-    animation: floatIcon 3s ease-in-out infinite;
-}
-
-@keyframes floatIcon {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
-}
-
-/* ================= BOTÓN ================= */
+/* ================= BOTONES ================= */
 
 button {
     background: #0f9d58;
@@ -115,21 +98,22 @@ button {
     border-radius: 40px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 button:hover {
     background: #0c7a44;
 }
 
+/* Animación suave del botón */
 @keyframes pulseSoft {
     0% { transform: scale(1); }
-    50% { transform: scale(1.04); }
+    50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
-.pulse {
-    animation: pulseSoft 2s infinite;
+.promo-btn {
+    animation: pulseSoft 2.5s infinite;
 }
 
 /* ================= MODAL ================= */
@@ -150,12 +134,12 @@ button:hover {
     max-width: 450px;
     border-radius: 25px;
     padding: 30px;
-    animation: zoomIn 0.3s ease;
     position: relative;
+    animation: zoomIn 0.3s ease;
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.85); opacity: 0; }
+    from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 

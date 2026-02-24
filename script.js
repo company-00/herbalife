@@ -1,13 +1,44 @@
-function openModal(id) {
-    document.getElementById(id).style.display = "flex";
+/* ============================= */
+/* CONFIGURACIÓN GENERAL */
+/* ============================= */
+
+// Fecha fija: 5:30 PM México
+const endTime = new Date("2026-02-24T17:30:00-06:00").getTime();
+
+// Número de WhatsApp (México sin +)
+const phoneNumber = "525574833071";
+
+
+/* ============================= */
+/* MODALES */
+/* ============================= */
+
+function openModal(modalId) {
+
+    const modal = document.getElementById(modalId);
+    modal.style.display = "flex";
+
+    let message = "";
+
+    if (modalId === "modal1") {
+        message = "Hola, me interesa la Promo Energía Total en $999 MXN 💚";
+    } 
+    else if (modalId === "modal2") {
+        message = "Hola, me interesa la Promo Control de Peso en $1,299 MXN 💚";
+    }
+
+    const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+    // Buscar el botón de WhatsApp dentro del modal actual
+    modal.querySelector(".whatsapp-link").href = url;
 }
 
-function closeModal(id) {
-    document.getElementById(id).style.display = "none";
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
 }
 
-/* Cerrar modal */
-window.addEventListener("click", function(e) {
+// Cerrar modal al hacer click fuera del contenido
+window.addEventListener("click", function (e) {
     document.querySelectorAll(".modal").forEach(modal => {
         if (e.target === modal) {
             modal.style.display = "none";
@@ -15,20 +46,21 @@ window.addEventListener("click", function(e) {
     });
 });
 
-/* CONTADOR HORA FIJA 5:00 PM MÉXICO */
 
-const countdownDate = new Date("2026-02-24T17:00:00-06:00").getTime();
+/* ============================= */
+/* CONTADOR */
+/* ============================= */
 
-const timer = setInterval(function() {
+const timer = setInterval(function () {
 
     const now = new Date().getTime();
-    const distance = countdownDate - now;
+    const distance = endTime - now;
 
     if (distance <= 0) {
         clearInterval(timer);
         document.getElementById("timer").innerHTML = "PROMOCIÓN FINALIZADA";
 
-        // Desactivar botones cuando termine
+        // Desactivar botones
         document.querySelectorAll(".promo-btn").forEach(btn => {
             btn.disabled = true;
             btn.style.opacity = "0.5";
@@ -46,18 +78,3 @@ const timer = setInterval(function() {
         hours + "h " + minutes + "m " + seconds + "s";
 
 }, 1000);
-
-/* Animación al hacer scroll */
-const promos = document.querySelectorAll(".promo");
-
-window.addEventListener("scroll", () => {
-    promos.forEach(promo => {
-        const rect = promo.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-            promo.classList.add("show");
-        }
-    });
-});
-
-/* Mostrar al cargar si ya están visibles */
-window.dispatchEvent(new Event("scroll"));
