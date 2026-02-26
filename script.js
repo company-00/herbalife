@@ -3,10 +3,10 @@
 /* ============================= */
 
 // Hora de inicio (México -6)
-const startTime = new Date("2026-02-26T14:25:00-06:00").getTime();
+const startTime = new Date("2026-02-26T14:29:00-06:00").getTime();
 
 // Hora de finalización
-const endTime = new Date("2026-02-26T15:00:00-06:00").getTime();
+const endTime = new Date("2026-02-26T23:59:59-06:00").getTime();
 
 // Número de WhatsApp (México sin +)
 const phoneNumber = "525539539196";
@@ -17,20 +17,18 @@ const phoneNumber = "525539539196";
 /* ============================= */
 
 function openModal(modalId) {
-
     const modal = document.getElementById(modalId);
     modal.style.display = "flex";
 
-    let message = "";
+    let message = ""; // ✅ Declara la variable aquí
 
     if (modalId === "modal1") {
-       let message = "Hola MFAVA-CLUB!💚 me interesa la Promo Breakfast en $125 MXN\n" +
+        message = "Hola MFAVA-CLUB! Me interesa la Promo Breakfast en $125 MXN\n" +
                   "- Aloe\n" +
                   "- Té\n" +
-                  "- Malteada de sabor:(Escribe el sabor disponible a elegir aquí).\n" +
+                  "- Malteada de sabor: (Escribe el sabor disponible a elegir aquí).\n" +
                   "- Wafle con: (Escribe la fruta disponible a elegir aquí).\n" +
-                  "- SandWafle con todo. (¿Quieres quitar un ingreidente? Escribe aquí).";
-
+                  "- SandWafle con todo: (¿Quieres quitar un ingrediente? Escribe aquí).";
     }
 
     const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
@@ -153,8 +151,4 @@ const timer = setInterval(function () {
         timerText.classList.add("warning");
     }
 
-
 }, 1000);
-
-
-
