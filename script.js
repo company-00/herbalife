@@ -25,7 +25,7 @@ function openModal(modalId) {
     if (modalId === "modal1") {
         message = "Hola MFAVA-CLUB! Me interesa la Promo Breakfast en $125 MXN\n" +
                   "\n- Aloe\n" +
-                  "- Té\n" +
+                  "- Té de sabor: (Escribe el sabor disponible a elegir aquí). \n" +
                   "- Malteada de sabor: (Escribe el sabor disponible a elegir aquí).\n" +
                   "- Wafle con: (Escribe la fruta disponible a elegir aquí).\n" +
                   "- SandWafle con todo: (¿Quieres quitar un ingrediente? Escribe aquí).";
@@ -153,3 +153,4 @@ const timer = setInterval(function () {
 
 
 }, 1000);
+
