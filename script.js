@@ -3,10 +3,10 @@
 /* ============================= */
 
 // Hora de inicio (México -6)
-const startTime = new Date("2026-02-27T06:00:00-06:00").getTime();
+const startTime = new Date("2026-02-27T14:20:00-06:00").getTime();
 
 // Hora de finalización
-const endTime = new Date("2026-02-26T23:59:59-06:00").getTime();
+const endTime = new Date("2026-02-26T14:50:00-06:00").getTime();
 
 // Número de WhatsApp (México sin +)
 const phoneNumber = "525539539196";
@@ -152,5 +152,6 @@ const timer = setInterval(function () {
     else if (distance <= 3600000) {
         timerText.classList.add("warning");
     }
+
 
 }, 1000);
