@@ -8,84 +8,143 @@
 
 /* ================= BODY ================= */
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f9d58, #e8f5e9);
-    min-height: 100vh;
+    background: linear-gradient(135deg, #0f9d58 0%, #e8f5e9 100%);
+    background-attachment: fixed;
+    min-height: 100svh;
+    /* 👈 mejor que 100vh en móviles */
     overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
 }
 
 /* ================= HEADER ================= */
-
 header {
+    display: flex;
+    justify-content: center;
+    margin: 4px auto 0 auto;
+    padding: 35px 30px;
+}
+
+/* Contenedor glass que une badge + h1 */
+.glass-text {
+    display: flex;
+    flex-direction: column;  /* badge arriba, h1 abajo */
+    align-items: center;     /* centra horizontalmente */
     text-align: center;
-    padding: 50px 20px;
-    color: white;
-    animation: fadeDown 1s ease;
+    padding: 12px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
 
+/* Badge */
+.badge {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #63ffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    padding: 0;
+    margin-bottom: 6px;   /* pequeño espacio debajo del badge */
+    background: transparent;
+}
+
+/* H1 */
 header h1 {
-    font-size: clamp(24px, 5vw, 40px);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    background: transparent;
 }
 
-header p {
-    font-size: clamp(14px, 3vw, 18px);
-    margin-top: 10px;
-    opacity: 0.9;
+/* Ajustes móviles */
+@media (max-width: 480px) {
+    .glass-text {
+        padding: 8px 12px;
+    }
+
+    .badge {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    header h1 {
+        font-size: clamp(20px, 6vw, 32px);
+        display: inline;          /* forzar una sola línea */
+        -webkit-line-clamp: unset; /* quitar máximo de 2 líneas */
+        overflow: visible;        /* asegurarse que no se corte */
+        white-space: nowrap;      /* fuerza que el texto no haga wrap */
+        text-overflow: clip;      /* evita “...” */
+    }
 }
 
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
 /* ================= CONTADOR ================= */
 
 .countdown {
     background: white;
     color: #0f9d58;
-    margin: 20px auto;
+    margin: 0px auto 15px auto;
     padding: 15px 25px;
     width: fit-content;
     border-radius: 30px;
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
 /* ================= PROMOCIONES ================= */
 
 .promo-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-@media (min-width: 768px) {
-    .promo-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    flex: 1;
+    /* 👈 ocupa el espacio restante */
+    display: flex;
+    justify-content: center;
+    /* 👈 centro horizontal */
+    align-items: center;
+    /* 👈 centro vertical */
+    padding: 20px;
 }
 
 .promo {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     text-align: center;
     padding-bottom: 25px;
+    width: 100%;
+    max-width: 420px;
+    padding-bottom: 15px;
+    /* antes 25px */
 }
 
 .promo img {
     width: 100%;
     height: auto;
+    display: block;
+    /* elimina espacio invisible debajo */
+
 }
 
+
 .promo h2 {
-    margin: 20px;
+    margin: 10px 20px 5px 20px;
+    /* antes era 20px */
     font-size: clamp(18px, 4vw, 24px);
 }
 
@@ -106,15 +165,24 @@ button:hover {
     background: #0c7a44;
 }
 
-/* Animación suave del botón */
 @keyframes pulseSoft {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .promo-btn {
     animation: pulseSoft 2.5s infinite;
+    margin-top: 5px;
+    /* 👈 esto lo baja */
 }
 
 /* ================= MODAL ================= */
@@ -123,7 +191,7 @@ button:hover {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -145,8 +213,15 @@ button:hover {
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .close {
@@ -162,4 +237,93 @@ button:hover {
     font-weight: bold;
     color: #0f9d58;
     margin: 15px 0;
+}
+
+/* ================= CONTADOR RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+
+    .countdown {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .countdown span {
+        display: block;
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+/* ================= PROMO QUE INCLUYE ================= */
+
+.includes {
+    margin: 5px 20px 10px 20px;
+    /* más compacto */
+    text-align: left;
+}
+
+.includes p {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0f9d58;
+}
+
+.includes ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.includes li {
+    margin: 5px 0;
+    font-size: 16px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.includes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #0f9d58;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0f9d58;
+    margin: 10px 20px 15px 20px;
+    text-align: right;
+}
+
+
+
+/* Colores del texto */
+
+#timer.warning {
+    color: #ff9800;
+    /* naranja */
+}
+
+#timer.danger {
+    color: #ff0000;
+    /* rojo */
+    animation: softBlink 1.2s infinite;
+}
+
+/* Parpadeo suave */
+@keyframes softBlink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

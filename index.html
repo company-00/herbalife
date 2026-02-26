@@ -14,14 +14,15 @@
 <body>
 
     <!-- HEADER -->
-    <header>
-        <h1>🌿 PROMOCIONES ESPECIALES 🌿</h1>
-        <p>Transforma tu salud hoy</p>
-    </header>
-
+   <header>
+    <div class="glass-text">
+        <span class="badge">MFAVA-CLUB</span><h1>VIERNES DE PROMOCIÓN</h1>
+    </div>
+</header>
     <!-- CONTADOR -->
     <div class="countdown">
-        🔥 Promoción termina en: <span id="timer"></span>
+        <span id="countdown-label"></span>
+        <span id="timer"></span>
     </div>
 
     <!-- PROMOCIONES -->
@@ -29,22 +30,25 @@
 
         <!-- Promo 1 -->
         <div class="promo">
-            <img src="https://via.placeholder.com/600x400" alt="Promo Energía Total">
-            <h2>Promo Energía Total</h2>
+            <img src="img1.jpg" alt="Promo Breakfast">
+            <h2>Promo Breakfast</h2>
+
+            <div class="includes">
+                <p><strong>Incluye:</strong></p>
+                <ul>
+                    <li>Aloe</li>
+                    <li>Té</li>
+                    <li>Malteada</li>
+                    <li>Waffle o SandWaffle</li>
+                </ul>
+            </div>
+
+            <p class="price">$125 MXN</p>
+
             <button class="promo-btn" onclick="openModal('modal1')">
-                Ver Oferta
+                Ver Detalles
             </button>
         </div>
-
-        <!-- Promo 2 -->
-        <div class="promo">
-            <img src="https://via.placeholder.com/600x400" alt="Promo Control de Peso">
-            <h2>Promo Control de Peso</h2>
-            <button class="promo-btn" onclick="openModal('modal2')">
-                Ver Oferta
-            </button>
-        </div>
-
     </section>
 
     <!-- ===================== -->
@@ -55,44 +59,22 @@
     <div id="modal1" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <h2>🔥 Promo Energía Total 🔥</h2>
-
+            <br>
+            <h2>Detalles:</h2><br>
             <ul>
-                <li>✔ Batido Nutricional</li>
-                <li>✔ Té Concentrado</li>
-                <li>✔ Aloe Herbal</li>
+                <li>Sabor Té: de arandano</li>
+                <li>Sabor de Malteada</li>
+                <li>Waffles acompañados de: chocolate derretido y durazno</li>
             </ul>
-
-            <p class="price">$999 MXN</p>
-
+            <p class="price">$125 MXN</p>
             <a class="whatsapp-link" target="_blank">
                 <button class="promo-btn">Pedir por WhatsApp</button>
             </a>
         </div>
     </div>
-
-    <!-- Modal 2 -->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <h2>🔥 Promo Control de Peso 🔥</h2>
-
-            <ul>
-                <li>✔ Fórmula 1</li>
-                <li>✔ Proteína</li>
-                <li>✔ Plan personalizado</li>
-            </ul>
-
-            <p class="price">$1,299 MXN</p>
-
-            <a class="whatsapp-link" target="_blank">
-                <button class="promo-btn">Pedir por WhatsApp</button>
-            </a>
-        </div>
-    </div>
-
     <!-- Script -->
     <script src="script.js"></script>
 
 </body>
+
 </html>

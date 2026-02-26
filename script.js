@@ -2,11 +2,14 @@
 /* CONFIGURACIÓN GENERAL */
 /* ============================= */
 
-// Fecha fija: 5:30 PM México
-const endTime = new Date("2026-02-24T21:00:00-06:00").getTime();
+// Hora de inicio (México -6)
+const startTime = new Date("2026-02-26T01:00:00-06:00").getTime();
+
+// Hora de finalización
+const endTime = new Date("2026-02-26T01:20:00-06:00").getTime();
 
 // Número de WhatsApp (México sin +)
-const phoneNumber = "525518975204";
+const phoneNumber = "525539539196";
 
 
 /* ============================= */
@@ -21,15 +24,12 @@ function openModal(modalId) {
     let message = "";
 
     if (modalId === "modal1") {
-        message = "Hola, me interesa la Promo Energía Total en $999 MXN 💚";
-    } 
-    else if (modalId === "modal2") {
-        message = "Hola, me interesa la Promo Control de Peso en $1,299 MXN 💚";
+        message = "Hola, me interesa la Promo Breakfast en $125 MXN";
     }
 
     const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
 
-    // Buscar el botón de WhatsApp dentro del modal actual
+    // Botón de WhatsApp dentro del modal
     modal.querySelector(".whatsapp-link").href = url;
 }
 
@@ -51,31 +51,100 @@ window.addEventListener("click", function (e) {
 /* CONTADOR */
 /* ============================= */
 
+const timerText = document.getElementById("timer");
+const countdownLabel = document.getElementById("countdown-label");
+
+const buttons = document.querySelectorAll(".promo-btn");
+
 const timer = setInterval(function () {
 
     const now = new Date().getTime();
-    const distance = endTime - now;
 
-    if (distance <= 0) {
-        clearInterval(timer);
-        document.getElementById("timer").innerHTML = "PROMOCIÓN FINALIZADA";
+    /* ============================= */
+    /* 🔹 ANTES DE INICIAR */
+    /* ============================= */
+    if (now < startTime) {
 
-        // Desactivar botones
-        document.querySelectorAll(".promo-btn").forEach(btn => {
+        const startDate = new Date(startTime);
+
+        countdownLabel.innerHTML = "";
+        timerText.innerHTML =
+            "Inicia el " +
+            startDate.toLocaleDateString("es-MX") +
+            " - " +
+            startDate.toLocaleTimeString("es-MX", {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+        // 🔒 Botón desactivado
+        buttons.forEach(btn => {
             btn.disabled = true;
-            btn.style.opacity = "0.5";
-            btn.innerText = "Promoción Finalizada";
+            btn.style.opacity = "0.6";
+            btn.innerText = "Disponible pronto";
         });
 
         return;
     }
 
+    /* ============================= */
+    /* 🔴 DESPUÉS DE TERMINAR */
+    /* ============================= */
+    if (now >= endTime) {
+
+    clearInterval(timer);
+
+    countdownLabel.innerHTML = "";
+    timerText.innerHTML = "PROMOCIÓN FINALIZADA";
+
+    // 🔴 Forzar rojo permanente
+    timerText.classList.remove("warning", "danger");
+    timerText.classList.add("danger");
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.innerText = "Promoción Finalizada";
+    });
+
+    return;
+}
+
+    /* ============================= */
+    /* 🟢 MIENTRAS ESTÁ ACTIVA */
+    /* ============================= */
+
+    countdownLabel.innerHTML = "Promoción termina en: ";
+
+    const distance = endTime - now;
+
     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((distance / (1000 * 60)) % 60);
     const seconds = Math.floor((distance / 1000) % 60);
 
-    document.getElementById("timer").innerHTML =
+    timerText.innerHTML =
         hours + "h " + minutes + "m " + seconds + "s";
 
-}, 1000);
+    // 🟢 Activar botón
+   buttons.forEach(btn => {
+    // Escuchar clic en cada botón
+    btn.addEventListener("click", () => {
+        // Abrir modal 1
+        openModal("modal1");
+    });
+});
 
+    /* ============================= */
+    /* 🎨 COLORES DINÁMICOS */
+    /* ============================= */
+
+    timerText.classList.remove("warning", "danger");
+
+    if (distance <= 900000) {
+        timerText.classList.add("danger");
+    }
+    else if (distance <= 3600000) {
+        timerText.classList.add("warning");
+    }
+
+}, 1000);
